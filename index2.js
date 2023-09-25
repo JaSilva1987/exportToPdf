@@ -4,12 +4,9 @@ const puppeteer = require('puppeteer');
     try {
         const browser = await puppeteer.launch({ headless: "new" });
         const page = await browser.newPage();
-        await page.goto('https://www.noticiasautomotivas.com.br/toyota-gr-yaris-ganhara-mais-potencia-chegando-a-304-cavalos/', { waitUntil: 'domcontentloaded', timeout: 60000 });
+        await page.goto('https://www.noticiasautomotivas.com.br/toyota-gr-yaris-ganhara-mais-potencia-chegando-a-304-cavalos/', { waitUntil: 'load', timeout: 60000 });
 
-        // Aguarde até que a página esteja completamente carregada
-        await page.waitForSelector('.single-post-content');
-
-        // Extraia o texto do conteúdo da página
+        // Extrair o texto do conteúdo da página
         const pageText = await page.evaluate(() => {
             const contentElement = document.querySelector('.single-post-content');
             if (contentElement) {
